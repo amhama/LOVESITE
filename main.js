@@ -7,7 +7,6 @@ btn_yes.addEventListener('click', () => {
 document.getElementById("title2").style.display = 'block'
 })
 
-
 const button = document.getElementById('btn_no');
 
 button.addEventListener('mouseover', () => {
@@ -32,16 +31,6 @@ button.addEventListener('mouseover', () => {
   button.style.top = randomY + 'px';
   button.style.position = 'absolute';
 });
-
-
-    window.addEventListener('load', function() {
-        const audio = document.getElementById('background-music');
-        audio.play().catch(error => {
-            // Autoplay might be blocked by the browser
-            console.log('Autoplay was prevented:', error);
-        });
-    });
-    
 
     btn_yes.addEventListener('click' , () =>{
       const audio = document.getElementById('background-music');
