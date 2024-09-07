@@ -11,35 +11,26 @@ document.getElementById("title2").style.display = 'block'
 const button = document.getElementById('btn_no');
 
 button.addEventListener('mouseover', () => {
-  // Get the button's dimensions
-  const buttonWidth = button.offsetWidth;
-  const buttonHeight = button.offsetHeight;
+  const noBtnRect = button.getBoundingClientRect();
 
-  // Get the button's original position
-  const originalX = button.offsetLeft;
-  const originalY = button.offsetTop;
+  const maxX = window.innerWidth - noBtnRect.width;
+  const maxY = window.innerHeight - noBtnRect.height;
 
-  // Define a range for the random coordinates (e.g., 50px)
-  const range = 100;
+  let randomX = Math.floor(Math.random() * maxX );
+  let randomY = Math.floor(Math.random() * maxY) ;
 
-  // Generate random x and y coordinates within the range
-  const randomX = Math.floor(Math.random() * (range * 2) - range) + originalX;
-  const randomY = Math.floor(Math.random() * (range * 2) - range) + originalY;
+  // Reverse direction if it goes out of bounds
+  if (randomX + noBtnRect.width > maxX || randomX < 0) {
+    randomX = maxX - randomX;
+  }
 
-  // Ensure the button doesn't move outside the viewport
-  const maxX = window.innerWidth - buttonWidth;
-  const maxY = window.innerHeight - buttonHeight;
-  const minX = 0;
-  const minY = 0;
+  if (randomY + noBtnRect.height > maxY || randomY < 0) {
+    randomY = maxY - randomY;
+  }
 
-  // Clamp the random coordinates to the range [minX, maxX] and [minY, maxY]
-  const newX = Math.max(minX, Math.min(randomX, maxX));
-  const newY = Math.max(minY, Math.min(randomY, maxY));
-
-  // Set the button's position to the new coordinates
+  button.style.left = randomX + 'px';
+  button.style.top = randomY + 'px';
   button.style.position = 'absolute';
-  button.style.top = `${newY}px`;
-  button.style.left = `${newX}px`;
 });
 
 
